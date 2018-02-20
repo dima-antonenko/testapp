@@ -1,5 +1,24 @@
 <p>this is home page</p>
 
+<hr/>
+для администратора:
+<% if administrator_signed_in? %>
+    <span>Здравствуйте, <%= current_administrator.email %></span>
+    <%= link_to 'Выйти', destroy_administrator_session_path, :method => :delete %>
+<% else %>
+    <%= link_to 'Войти', new_administrator_session_path %> или <%= link_to 'Зарегистрироваться', new_administrator_registration_path %>
+<% end %>
+<hr/>
+для покупателя:
+<% if customer_signed_in? %>
+    <span>Здравствуйте, <%= current_customer.email %></span>
+    <%= link_to 'Выйти', destroy_customer_session_path, :method => :delete %>
+<% else %>
+    <%= link_to 'Войти', new_customer_session_path %> или <%= link_to 'Зарегистрироваться', new_customer_registration_path %>
+<% end %>
+<hr/>
+
+
 <% @products.each do |product| %>
   <%= product.attributes %><br/>
 <% end %>  

@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
   end
 
   def dashboard
-    render "layouts/customer/dashboard"
+    render "/customers/dashboard"
   end
 
 
