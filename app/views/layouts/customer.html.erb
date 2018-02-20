@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Аккаунт покупателя</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'customer', media: 'all' %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag 'customer' %>
+  </body>
+</html>
