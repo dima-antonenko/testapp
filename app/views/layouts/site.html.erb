@@ -7,6 +7,9 @@
   </head>
 
   <body>
+    <hr/>
+      <p>cart: <%= @cart %>, cart_class: <%= @cart.class %>,  customer: <%= current_customer %></p>
+    <hr/>
     <%= yield %>
     <%= javascript_include_tag 'site' %>
   </body>

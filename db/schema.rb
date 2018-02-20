@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220090640) do
+ActiveRecord::Schema.define(version: 20180220100452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,30 @@ ActiveRecord::Schema.define(version: 20180220090640) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_administrators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
+  end
+
+  create_table "cart_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "cart_id"
+    t.integer "order_id"
+    t.integer "product_price"
+    t.integer "product_qty", default: 1
+    t.integer "product_total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_products_on_cart_id"
+    t.index ["order_id"], name: "index_cart_products_on_order_id"
+    t.index ["product_id"], name: "index_cart_products_on_product_id"
+    t.index ["product_price"], name: "index_cart_products_on_product_price"
+    t.index ["product_qty"], name: "index_cart_products_on_product_qty"
+    t.index ["product_total_price"], name: "index_cart_products_on_product_total_price"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_carts_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|

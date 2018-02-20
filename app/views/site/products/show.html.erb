@@ -2,4 +2,10 @@
 
 <%= @product %>
 <hr/>
-<%= !@product %>
+
+
+<% if current_customer %>
+  <%= button_to 'Добавить в корзину', add_to_cart_product_path(@product[:id]), {method: :post} %>
+<% else %>  
+  <p>Чтобы купить товар нужно <%= link_to 'войти', new_customer_session_path %> или <%= link_to 'зарегистрироваться', new_customer_registration_path %>.</p>
+<% end %>

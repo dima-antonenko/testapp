@@ -6,5 +6,11 @@ class Site::ProductsController < SiteController
       render file: "#{Rails.root}/public/404", layout: false, status: :not_found
     end  
   end
+
+  # добавление в корзину зарегистрированным пользователем
+  def add_to_cart
+    Cart.add_product(@cart[:id], params[:id])
+    redirect_to cart_path(@cart)
+  end
     
 end

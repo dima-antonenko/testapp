@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   root 'site/pages#home'
 
   scope module: 'site' do
-    resources :products
+    resources :products do
+      post 'add_to_cart', on: :member
+    end  
     resources :carts, only: [:show, :destroy]
     resources :line_items, only: [:destroy]
     resources :orders, only: [:show]
