@@ -1,0 +1,5 @@
+<%= form_for([:administrators, @new_category], multipart: true ) do |f| %>
+  <%= f.text_area :name, placeholder: 'Имя' %><br/>
+  <%= f.hidden_field(:parent_id, value: @parent_id) %>
+  <%= f.submit 'Отправить' %>
+<% end %>

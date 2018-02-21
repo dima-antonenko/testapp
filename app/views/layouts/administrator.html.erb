@@ -7,6 +7,12 @@
   </head>
 
   <body>
+    <hr/>
+      <p><%= link_to 'Категории товаров', administrators_product_categories_path() %> | 
+         <%= link_to 'Товары', administrators_products_path() %> | 
+         <%= link_to 'Заказы', administrators_orders_path() %>
+      </p>
+    <hr>
     <%= yield %>
     <%= javascript_include_tag 'administrator' %>
   </body>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221071832) do
+ActiveRecord::Schema.define(version: 20180221090635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20180221071832) do
     t.text "customer_notice"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["customer_notice"], name: "index_orders_on_customer_notice"
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "product_category_id", null: false
+    t.boolean "is_root", default: false
+    t.index ["is_root"], name: "index_product_categories_on_is_root"
+    t.index ["name"], name: "index_product_categories_on_name"
+    t.index ["product_category_id"], name: "index_product_categories_on_product_category_id"
   end
 
   create_table "products", force: :cascade do |t|
