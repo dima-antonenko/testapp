@@ -1,5 +1,5 @@
 module Orm
-  class Product
+  class Product < Orm::Base
 
     def self.find_by_id(product_id)
       with_connection do |conn|
@@ -14,14 +14,6 @@ module Orm
         conn.prepare("select_q", "SELECT * FROM products")
         conn.exec_prepared("select_q", []).to_a
       end
-    end
-
-    private
-
-    def self.with_connection
-      yield conn = PG::Connection.new(dbname: "testapp")
-    ensure
-      conn.close
     end
 
   end

@@ -1,5 +1,5 @@
 module Orm
-  class ProductCategory
+  class ProductCategory < Orm::Base
 
     # получение всех категорий
     def self.get_all_items
@@ -52,14 +52,6 @@ module Orm
       else
         false
       end
-    end
-
-    private
-
-    def self.with_connection
-      yield conn = PG::Connection.new(dbname: "testapp")
-    ensure
-      conn.close
     end
 
   end

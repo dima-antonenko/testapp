@@ -1,5 +1,5 @@
 module Orm
-  class Cart
+  class Cart < Orm::Base
 
     # удаляет товар из корзины
     # возвращает nil если запись не найдена или запись пренадлежит к другой корзине
@@ -119,11 +119,6 @@ module Orm
       inc_qty(product_item[:product_qty]) * product_item[:product_price].to_i
     end
 
-    def self.with_connection
-      yield conn = PG::Connection.new(dbname: "testapp")
-    ensure
-      conn.close
-    end
-
+    
   end
 end

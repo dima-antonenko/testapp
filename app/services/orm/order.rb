@@ -1,5 +1,5 @@
 module Orm
-  class Order
+  class Order < Orm::Base
 
     def self.get_all_items
       with_connection do |conn|
@@ -23,14 +23,6 @@ module Orm
                                   where order_id = $1")
         conn.exec_prepared("select_q", [{value: id}]).to_a
        end
-    end
-
-    private
-
-    def self.with_connection
-      yield conn = PG::Connection.new(dbname: "testapp")
-    ensure
-      conn.close
     end
 
   end
