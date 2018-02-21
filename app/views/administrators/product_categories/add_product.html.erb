@@ -1,0 +1,7 @@
+<h2>Добавление товара к категории</h2>
+<%= form_for([:administrators, @new_product], multipart: true ) do |f| %>
+  <%= f.text_field :name, placeholder: 'Имя' %><br/>
+  <%= f.text_field :price, placeholder: 'Цена' %><br/>
+  <%= f.hidden_field(:parent_id, value: @parent_id) %>
+  <%= f.submit 'Отправить' %>
+<% end %>

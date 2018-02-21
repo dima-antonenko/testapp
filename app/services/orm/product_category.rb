@@ -38,10 +38,23 @@ module Orm
         conn.prepare("select_q", "SELECT * FROM product_categories WHERE id =$1")
         conn.exec_prepared("select_q", [{value: id}]).to_a[0]
       end
+    end 
+
+    # добавление товара к категории
+    # если товар добавлен - возвращается его id
+    def self.add_product(category_id, product_name, product_price)
+      category = get_category(category_id)
+      if category
+        with_connection do |conn|
+          conn.prepare("insert_q", "INSERT INTO products (product_category_id, name, price) VALUES ($1, $2, $3) RETURNING id;")
+          conn.exec_prepared("insert_q", [{value: category_id}, {value: product_name}, {value: product_price}]).to_a[0]['id']
+        end
+      else
+        false
+      end
     end
 
     private
-
 
     def self.with_connection
       yield conn = PG::Connection.new(dbname: "testapp")

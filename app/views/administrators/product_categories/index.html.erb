@@ -1,6 +1,6 @@
 <% @all_categories.each do |category| %>
   <%= category %>
-  <%= link_to 'добавить дочернюю', add_children_administrators_product_category_path(category['id']) %>
+  <%= link_to 'добавить дочернюю', add_children_administrators_product_category_path(category['id']) %> | 
   <%= link_to 'добавить товар', add_product_administrators_product_category_path(category['id']) %>
   <br/>
 <% end %>

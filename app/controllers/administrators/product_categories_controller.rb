@@ -16,7 +16,8 @@ class Administrators::ProductCategoriesController < AdministratorsController
   end
 
   def add_product
-    
+    @new_product = Product.new
+    @parent_id = params[:id]
   end
 
 end  

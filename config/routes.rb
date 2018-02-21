@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get 'add_children', on: :member
       get 'add_product', on: :member
     end
-    resources :products, only: [:index]
+    resources :products, only: [:create]
     resources :orders, only: [:index, :show]  
   end  
 
