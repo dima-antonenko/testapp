@@ -19,6 +19,13 @@
 <hr/>
 
 
-<% @products.each do |product| %>
-  <%= product %> <%= link_to 'Перейти', product_path(product['id']) %><br/>
-<% end %>  
+<table>
+  <tr>
+    <th>id</th> <th>Название</th> <th>Цена</th><th></th>
+  </tr>
+  <% @products.each do |product| %>
+  <tr>
+    <td><%= product['id'] %></td><td><%= product['name'] %></td><td><%= product['price'] %></td> <td><%= link_to 'Перейти', product_path(product['id']) %></td>
+  </tr>
+  <% end %>
+</table>

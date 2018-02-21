@@ -57,7 +57,6 @@ module Orm
     # добавление товара в корзину
     def self.add_product(cart_id, product_id)
       with_connection do |conn|
-        conn = PG::Connection.new(dbname: "testapp")
         conn.prepare("select_q", "SELECT * FROM cart_products WHERE cart_id =$1 AND product_id =$2 LIMIT 1")
         product_item = conn.exec_prepared("select_q", [{ value: cart_id}, {value: product_id}]).to_a[0] # {"id"=>"5", "product_id"=>"1", "cart_id"=>"12", "order_id"=>nil, "product_price"=>"100", "product_qty"=>"1", "product_total_price"=>"100"}
         product_item ? update_product_in_cart(product_item) : add_new_product_to_cart(cart_id, product_id)

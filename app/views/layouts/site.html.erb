@@ -3,12 +3,13 @@
   <head>
     <title>Общедоступная часть</title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'site', media: 'all' %>
+    <%= stylesheet_link_tag 'site', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
     <hr/>
-      <p>cart: <%= @cart %>, cart_class: <%= @cart.class %>,  customer: <%= current_customer %>, notice: <%= flash[:notice] %> </p>
+      <p>cart: <%= @cart %> <%= link_to 'Перейти', cart_path(@cart[:id]) %>, cart_class: <%= @cart.class %>,  customer: <%= current_customer %>, notice: <%= flash[:notice] %> </p>
     <hr/>
     <%= yield %>
     <%= javascript_include_tag 'site' %>

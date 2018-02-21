@@ -1,8 +1,22 @@
 <h2>Корзина</h2>
 
-<% @items.each do |item| %>
-  <%= item %> <%= button_to 'удалить', remove_item_cart_path(item['id']) %><br/>
-<% end %>  
+<table>
+  <tr>
+    <th>id</th> <th>product_id</th> <th>cart_id</th>  <th>product_price</th> <th>product_qty</th><th>total_price</th><th></th>
+  </tr>
+  <% @items.each do |item| %>
+  <tr>
+    <td><%= item['id'] %></td>
+    <td><%= item['product_id'] %></td>
+    <td><%= item['cart_id'] %></td>  
+    <td><%= item['product_price'] %></td>
+    <td><%= item['product_qty'] %></td>  
+    <td><%= item['product_total_price'] %></td>      
+    <td><%= button_to 'удалить', remove_item_cart_path(item['id']) %></td>
+  </tr>
+  <% end %>
+</table>
+
 <h3>Оформить заказ</h3>
 <%= form_for @new_order do |f| %>
   <%= f.text_area :customer_notice, placeholder: 'Примечание к заказу' %><br/>

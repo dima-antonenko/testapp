@@ -1,6 +1,18 @@
-<% @all_categories.each do |category| %>
-  <%= category %>
-  <%= link_to 'добавить дочернюю', add_children_administrators_product_category_path(category['id']) %> | 
-  <%= link_to 'добавить товар', add_product_administrators_product_category_path(category['id']) %>
-  <br/>
-<% end %>
+<table>
+  <tr>
+    <th>id</th><th>Название</th><th>id родителя</th> <th>Глубина</th><th>Иерархия</th><th></th>
+  </tr>
+  <% @all_categories.each do |category| %>
+  <tr>
+    <td><%= category['id'] %></td>
+    <td><%= category['name'] %></td>  
+    <td><%= category['product_category_id'] %></td>
+    <td><%= category['depth'] %></td>  
+    <td><%= category['sort_string'] %></td> 
+    <td>
+      <%= link_to 'добавить дочернюю', add_children_administrators_product_category_path(category['id']) %> | 
+      <%= link_to 'добавить товар', add_product_administrators_product_category_path(category['id']) %>
+    </td>     
+  </tr>
+  <% end %>
+</table>

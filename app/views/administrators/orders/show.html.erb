@@ -1,6 +1,16 @@
 <h2>Заказ №<%= @order[:id] %></h2>
 
-
-<% @product_items.each do |product| %>
-  <%= product %> <br/>
-<% end %> 
+<table>
+  <tr>
+    <th>product_id</th><th>product_name</th><th>product_price</th> <th>product_qty</th><th>total_price</th><th></th>
+  </tr>
+  <% @product_items.each do |item| %>
+  <tr>
+    <td><%= item['product_id'] %></td>
+    <td><%= item['name'] %></td>  
+    <td><%= item['product_price'] %></td>
+    <td><%= item['product_qty'] %></td>  
+    <td><%= item['product_total_price'] %></td>      
+  </tr>
+  <% end %>
+</table>

@@ -1,5 +1,15 @@
 <h2>Заказы</h2>
-
-<% @orders.each do |order| %>
-  <%= order %> <%= link_to "Посмотреть", administrators_order_path(order['id']) %><br/>
-<% end %>  
+  
+<table>
+  <tr>
+    <th>id</th> <th>customer_id</th> <th>customer_notice</th> <th></th>
+  </tr>
+  <% @orders.each do |order| %>
+  <tr>
+    <td><%= order['id'] %></td>
+    <td><%= order['customer_id'] %></td>
+    <td><%= order['customer_notice'] %></td>     
+    <td><%= link_to "Посмотреть", administrators_order_path(order['id']) %></td>
+  </tr>
+  <% end %>
+</table>
