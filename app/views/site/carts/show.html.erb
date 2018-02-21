@@ -3,7 +3,7 @@
 <% @items.each do |item| %>
   <%= item %> <%= button_to 'удалить', remove_item_cart_path(item['id']) %><br/>
 <% end %>  
-
+<h3>Оформить заказ</h3>
 <%= form_for @new_order do |f| %>
   <%= f.text_area :customer_notice, placeholder: 'Примечание к заказу' %><br/>
   <%= f.submit 'Отправить' %>

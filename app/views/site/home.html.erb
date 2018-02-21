@@ -20,5 +20,5 @@
 
 
 <% @products.each do |product| %>
-  <%= product.attributes %><br/>
+  <%= product %> <%= link_to 'Перейти', product_path(product['id']) %><br/>
 <% end %>  
