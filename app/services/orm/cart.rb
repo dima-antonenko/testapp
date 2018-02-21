@@ -105,7 +105,6 @@ module Orm
     def self.update_product_in_cart(product_item)
       with_connection do |conn|
         product_item = product_item.symbolize_keys # {"id"=>"5", "product_id"=>"1", "cart_id"=>"12", "order_id"=>nil, "product_price"=>"100", "product_qty"=>"1", "product_total_price"=>"100"}
-        conn = PG::Connection.new(dbname: "testapp")
         conn.prepare("product_item_q", "UPDATE cart_products SET product_qty = $1, product_total_price = $2 WHERE id = $3")
         conn.exec_prepared("product_item_q", [{value: inc_qty(product_item[:product_qty])}, {value: calc_total_price(product_item)}, {value: product_item[:id]}])
       end
