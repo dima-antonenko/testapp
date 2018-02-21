@@ -1,0 +1,5 @@
+<h2>Заказы</h2>
+
+<% @orders.each do |order| %>
+  <%= order %> <%= link_to "Посмотреть", administrators_order_path(order['id']) %><br/>
+<% end %>  
