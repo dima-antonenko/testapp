@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :products do
       post 'add_to_cart', on: :member
     end  
-    resources :carts, only: [:show, :destroy]
+    resources :carts, only: [:show, :destroy] do
+      post 'remove_item', on: :member
+    end  
     resources :line_items, only: [:destroy]
     resources :orders, only: [:show]
   end
