@@ -4,7 +4,19 @@ module Orm
     # получение всех категорий
     def self.get_all_items
       with_connection do |conn|
-        conn.prepare("select_q", "SELECT * FROM product_categories ORDER BY id")
+        query = "WITH RECURSIVE tree AS (
+                 SELECT
+                   id, name, product_category_id, name AS sort_string, 1 AS depth
+                 FROM product_categories
+                 WHERE is_root = true
+                 UNION ALL
+                 SELECT
+                 s1.id, s1.name, s1.product_category_id,
+                 tree.sort_string || ' -> ' || s1.name AS sort_string, tree.depth+1 AS depth
+                 FROM tree
+                 JOIN product_categories s1 ON s1.product_category_id = tree.id)
+                 SELECT depth, name, id, product_category_id, sort_string FROM tree ORDER BY sort_string ASC;"
+        conn.prepare("select_q", query)
         conn.exec_prepared("select_q", []).to_a
       end
     end
