@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post 'remove_item', on: :member
     end  
     resources :line_items, only: [:destroy]
-    resources :orders, only: [:show]
+    resources :orders, only: [:create]
   end
 
 

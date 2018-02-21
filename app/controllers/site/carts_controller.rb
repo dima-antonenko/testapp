@@ -1,7 +1,8 @@
 class Site::CartsController < SiteController
 
   def show
-    @items = Cart.get_all_items(@cart[:id])
+    @items = Orm::Cart.get_all_items(@cart[:id])
+    @new_order = Order.new
   end
 
   def remove_item
